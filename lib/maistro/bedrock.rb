@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
-require_relative "bedrock/version"
+require 'maistro'
+require_relative 'bedrock/version'
+require_relative 'bedrock/configuration'
+require_relative 'bedrock/agent'
 
 module Maistro
   module Bedrock
