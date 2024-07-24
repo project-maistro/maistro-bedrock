@@ -39,16 +39,17 @@ module Maistro
         end
       end
 
+      def configuration
+        Maistro::Bedrock::Configuration.configuration
+      end
+
       def _converse
-        response = Maistro::Bedrock::Configuration.bedrock_client.converse(
-          model_id: "anthropic.claude-3-5-sonnet-20240620-v1:0",
+        response = configuration.bedrock_client.converse(
+          model_id: configuration.model,
           system: [{
             text: prompt
           }],
-          inference_config: {
-            max_tokens: 2000,
-            temperature: 0
-          },
+          inference_config: configuration.inference_config,
           tool_config: {
             tools: _tool_list
           },
