@@ -2,7 +2,7 @@ module Maistro
   module Bedrock
     class Agent < Maistro::Agent::Base
 
-      def start_interaction(prompt)
+      def interact(prompt)
         thread << {
           role: :user,
           content: [
