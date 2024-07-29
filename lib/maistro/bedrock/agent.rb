@@ -2,13 +2,6 @@ module Maistro
   module Bedrock
     class Agent < Maistro::Agent::Base
 
-      attr_accessor :thread
-
-      def initialize(name:)
-        @thread = []
-        super
-      end
-
       def start_interaction(prompt)
         thread << {
           role: :user,
