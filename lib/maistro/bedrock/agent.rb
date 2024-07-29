@@ -1,5 +1,5 @@
 module Maistro
-  module Agent
+  module Bedrock
     class Agent < Maistro::Agent::Base
 
       attr_accessor :thread
