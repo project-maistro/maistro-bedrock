@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/project-maistro/maistro.git
-  revision: 031826b6753cb384b4cf79e4d20a1c1876d0d866
+  revision: 7b8d38e7ef498ddf85bf2bb222ecbcf15ffeb83c
   branch: main
   specs:
     maistro (0.1.0)
@@ -86,4 +86,4 @@ DEPENDENCIES
   rubocop (~> 1.21)
 
 BUNDLED WITH
-   2.5.11
+   2.5.15

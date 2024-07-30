@@ -4,6 +4,7 @@ require 'maistro'
 require_relative 'bedrock/version'
 require_relative 'bedrock/configuration'
 require_relative 'bedrock/agent'
+require_relative 'bedrock/orchestrator'
 
 module Maistro
   module Bedrock
