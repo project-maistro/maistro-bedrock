@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/project-maistro/maistro.git
-  revision: 12b4f844a03ad85a27b565bb8638aec622ae7cc6
+  revision: 1a78adf32734c56bb5f7cd256e230ed5ea93abcc
   branch: main
   specs:
     maistro (0.1.0)
