@@ -11,6 +11,10 @@ module Maistro
           messages: [{ role: :user, content: [{ text: prompt }] }]
         )
       end
+
+      def configuration
+        Maistro::Bedrock::Configuration.configuration
+      end
     end
   end
 end
