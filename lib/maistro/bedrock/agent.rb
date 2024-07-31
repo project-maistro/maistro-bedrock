@@ -36,18 +36,33 @@ module Maistro
         Maistro::Bedrock::Configuration.configuration
       end
 
-      def _converse
-        response = configuration.bedrock_client.converse(
-          model_id: configuration.model,
-          system: [{
-            text: prompt
-          }],
-          inference_config: configuration.inference_config,
+      def _client
+        configuration.bedrock_client
+      end
+
+      def tool_config
+        return {} unless functions.any?
+
+        {
           tool_config: {
             tools: _tool_list
-          },
+          }
+        }
+      end
+
+      def converse_options
+        {
+          model_id: configuration.model,
+          system: [{
+            text: system_prompt
+          }],
+          inference_config: configuration.inference_config,
           messages: thread
-        )
+        }.merge(tool_config)
+      end
+
+      def _converse
+        response = _client.converse(converse_options)
         thread << response.output.message
         return response.output.message[:content].first[:text] if response.stop_reason != "tool_use"
 
