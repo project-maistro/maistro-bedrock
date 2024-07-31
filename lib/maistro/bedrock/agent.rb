@@ -63,8 +63,9 @@ module Maistro
 
       def _converse
         response = _client.converse(converse_options)
-        thread << response.output.message
-        return response.output.message[:content].first[:text] if response.stop_reason != "tool_use"
+        message = response.output.message
+        thread << message
+        return message[:content].first[:text] if response.stop_reason != 'tool_use'
 
         thread << _run_tool(response)
         _converse
