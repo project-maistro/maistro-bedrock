@@ -54,7 +54,7 @@ module Maistro
         {
           model_id: configuration.model,
           system: [{
-            text: system_prompt
+            text: prompt
           }],
           inference_config: configuration.inference_config,
           messages: thread
