@@ -1,15 +1,14 @@
 module Maistro
   module Bedrock
     class Agent < Maistro::Agent::Base
-
-      def interact(prompt)
+      def interact(prompt, context)
         thread << {
           role: :user,
           content: [
             text: prompt
           ]
         }
-        _converse
+        _converse(context)
       end
 
       private
@@ -61,17 +60,17 @@ module Maistro
         }.merge(tool_config)
       end
 
-      def _converse
+      def _converse(context)
         response = _client.converse(converse_options)
         message = response.output.message
         thread << message
         return message[:content].first[:text] if response.stop_reason != 'tool_use'
 
-        thread << _run_tool(response)
+        thread << _run_tool(response, context)
         _converse
       end
 
-      def _run_tool(response)
+      def _run_tool(response, context)
         message = { role: :user, content: [] }
         response.output.message.content.each do |content|
           next unless content.tool_use
@@ -81,7 +80,7 @@ module Maistro
               tool_use_id: content.tool_use.tool_use_id,
               content: [{
                 json: {
-                  result: _function_by_name[content.tool_use[:name]].new.run
+                  result: _function_by_name[content.tool_use[:name]].new.run(content.tool_use[:input], context)
                 }
               }]
             }
