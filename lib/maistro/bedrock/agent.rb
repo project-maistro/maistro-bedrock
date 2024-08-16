@@ -67,7 +67,7 @@ module Maistro
         return message[:content].first[:text] if response.stop_reason != 'tool_use'
 
         thread << _run_tool(response, context)
-        _converse
+        _converse(context)
       end
 
       def _run_tool(response, context)
